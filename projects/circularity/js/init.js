@@ -20,8 +20,8 @@ var init = function (window) {
         ////////////////////////////////////////////////////////////
         
         // TODO 1 : Declare and initialize our variables
-        var circle;
-        var circles = [];
+        var circle; //declares circle variable
+        var circles = []; //declares circles array
 
         // TODO 2 : Create a function that draws a circle 
         function drawCircle(){
@@ -41,8 +41,8 @@ var init = function (window) {
         drawCircle();
 
         */
-        for(var i = 0; i<=100; i++){
-            drawCircle();
+        for(var i = 0; i<=1000; i++){
+            drawCircle(); //draws the circle 1000 times
         }
         
             
@@ -67,9 +67,9 @@ var init = function (window) {
             
 
             // TODO 9 : Iterate over the array
-           for(var i = 0; i < circles.length; i++ ){
-            physikz.updatePosition(circles[i]);
-            game.checkCirclePosition(circles[i]);
+           for(var i = 0; i < circles.length; i++ ){//calls the functions that makes the circles move
+            physikz.updatePosition(circles[i]);//updates the position of the circle
+            game.checkCirclePosition(circles[i]);//checks the circles position
            }
             
         }
@@ -83,16 +83,16 @@ var init = function (window) {
 
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
             if ( circle.x > canvas.width ) {
-                circle.x = 0;
+                circle.x = 0; //if circle touches right side of the screen it will appear of the left side of the screen
             }
             if ( circle.x < 0 ) {
-                circle.x = canvas.width;
+                circle.x = canvas.width; //if circle touches left side of the screen it will appear of the right side of the screen
             }
             if ( circle.y < 0 ) {
-                circle.y = canvas.width;
+                circle.y = canvas.height; //if circle touches top of the screen it will appear at the bottom of the screen
             }
             if ( circle.y > canvas.height ) {
-                circle.y = 0;
+                circle.y = 0; //if circle touches bottom of the screen it will appear at the top of the screen
             }
             
             // TODO 7 : YOUR CODE STARTS HERE //////////////////////
