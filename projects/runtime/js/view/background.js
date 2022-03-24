@@ -61,9 +61,10 @@ var background = function (window) {
             
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             // everytime this loop runs, it creates a building with an x and y value and pushes it to the building array to be store in an idex and keeps going.
-            for(var i = 0; i < 5; i++) {
+            for(var i = 0; i < 8; i++) {
                 var buildingHeight = Math.random()*300; //declare a variable called buidingHeight that holds the height of the building in pixels
-                var building = draw.rect(75,buildingHeight,'LightGray','Black',1); //declares a variable called building which will hold each building
+                var colors = ["gray", "yellow", "lightblue", "red", "black", "blue", "green", "orange"]
+                var building = draw.rect(75,buildingHeight,colors[i],'Black',1); //declares a variable called building which will hold each building
                 building.x = 200*i; //adds 200 pixels to the x value every time it runs
                 building.y = groundY-buildingHeight; //sets the building's y posiiton by subtracting the height of thebuilding from goundY
                 background.addChild(building); //adds the building to the background so we can see it
@@ -96,7 +97,13 @@ var background = function (window) {
             }
             
             // TODO 5: Part 2 - Parallax
+            for (var i = 0; i < buildings.length; i++) {
+                buildings[i].x = buildings[i].x-0.3
+                if(buildings[i].x < 0) {
+                    buildings[i].x = canvasWidth;
+                }
             
+            }
 
         } // end of update function - DO NOT DELETE
         
