@@ -28,6 +28,9 @@ var background = function (window) {
         // ANIMATION VARIABLES HERE:
         var tree;
         var buildings = [];
+        var building1;
+        var building2;
+        var building3;
      
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
@@ -37,7 +40,7 @@ var background = function (window) {
             // TODO: 2 - Part 2
             // this fills the background with a obnoxious yellow
             // you should modify this to suit your game
-            var backgroundFill = draw.rect(canvasWidth,groundY,'#1FAFC0');//creates a variable called backgroundFill and stores a rectangle that acts as our background
+            var backgroundFill = draw.rect(canvasWidth,groundY,'#545353');//creates a variable called backgroundFill and stores a rectangle that acts as our background
             background.addChild(backgroundFill);// adds the background to the canvas so wecan see it
             
             // TODO: 3 - Add a moon and starfield
@@ -50,9 +53,9 @@ var background = function (window) {
 
             }
 
-            var moon = draw.bitmap('img/moon.png');
-            moon.x = canvasWidth - 300; //holds the x value of the moon
-            moon.y = groundY - 450; //holds the y value 
+            var moon = draw.bitmap('img/background/moon.png');
+            moon.x = canvasWidth - 600; //holds the x value of the moon
+            moon.y = groundY - 400; //holds the y value 
             moon.scaleX = 0.5;//changes the x scale of the moon
             moon.scaleY = 0.5;//changes the y scale of the moon
             background.addChild(moon); //adds the moon to the background
@@ -61,23 +64,45 @@ var background = function (window) {
             
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             // everytime this loop runs, it creates a building with an x and y value and pushes it to the building array to be store in an idex and keeps going.
-            for(var i = 0; i < 8; i++) {
-                var buildingHeight = Math.random()*300; //declare a variable called buidingHeight that holds the height of the building in pixels
-                var colors = ["gray", "yellow", "lightblue", "red", "black", "blue", "green", "orange"]
-                var building = draw.rect(75,buildingHeight,colors[i],'Black',1); //declares a variable called building which will hold each building
-                building.x = 200*i; //adds 200 pixels to the x value every time it runs
-                building.y = groundY-buildingHeight; //sets the building's y posiiton by subtracting the height of thebuilding from goundY
-                background.addChild(building); //adds the building to the background so we can see it
-                buildings.push(building); //psu the building's data to the buildings array and store it as an index
-            }
+           
+
+            building3 = draw.bitmap('img/background/building-3.png');
+            building3.x = canvasWidth - 1000;
+            building3.y = groundY-386;
+            building3.scaleX = 1.0 //to change size
+            building3.scaleY = 1.0 //to change size
+            background.addChild(building3);
+
+
+            building1 = draw.bitmap('img/background/building-1.png');
+            building1.x = canvasWidth - 100;
+            building1.y = groundY-185;
+            building1.scaleX = 1.5 //to change size
+            building1.scaleY = 1.5//to change size
+            background.addChild(building1);
+
+
+            building2 = draw.bitmap('img/background/building-2.png');
+            building2.x = canvasWidth - 1000;
+            building2.y = groundY-285;
+            building2.scaleX = 1.5 //to change size
+            building2.scaleY = 1.5 //to change size
+            background.addChild(building2);
+
             
-            // TODO 4: Part 1 - Add a tree
-            tree = draw.bitmap('img/tree.png');
-            tree.x = canvasWidth - 300;
-            tree.y = groundY-235;
-            //tree.scaleX = 0.7 to change size
-            background.addChild(tree);
+           
+
             
+
+
+
+
+
+
+
+
+
+
         } // end of render function - DO NOT DELETE
         
         
@@ -89,21 +114,29 @@ var background = function (window) {
             var canvasHeight = app.canvas.height;
             var groundY = ground.y;
             
-            // TODO 4: Part 2 - Move the tree!
-            tree.x = tree.x - 1; // takes the current value of tree.x and subtracts 1 pixel 60/second to move the tree to the left
+            
+
+
+            building1.x = building1.x - 1; // takes the current value of tree.x and subtracts 1 pixel 60/second to move the tree to the left
             //if the tree's x value is less than -100 pixels then reassign canvasWidth to the tree's x position
-            if(tree.x < -200) {
-                tree.x = canvasWidth;
+            if(building1.x < -500) {
+                building1.x = canvasWidth;
+            }
+
+            building2.x = building2.x - 2; // takes the current value of tree.x and subtracts 1 pixel 60/second to move the tree to the left
+            //if the tree's x value is less than -100 pixels then reassign canvasWidth to the tree's x position
+            if(building2.x < -900) {
+                building2.x = canvasWidth;
+            }
+
+            
+            building3.x = building3.x - 0.9; // takes the current value of tree.x and subtracts 1 pixel 60/second to move the tree to the left
+            //if the tree's x value is less than -100 pixels then reassign canvasWidth to the tree's x position
+            if(building3.x < -900) {
+                building3.x = canvasWidth;
             }
             
-            // TODO 5: Part 2 - Parallax
-            for (var i = 0; i < buildings.length; i++) {
-                buildings[i].x = buildings[i].x-0.3
-                if(buildings[i].x < 0) {
-                    buildings[i].x = canvasWidth;
-                }
-            
-            }
+
 
         } // end of update function - DO NOT DELETE
         
