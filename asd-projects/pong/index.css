@@ -4,11 +4,13 @@ body {
 }
 
 #board {
-  width: 440px;
+  
+  width: 900px;
   height: 440px;
   border: 1px solid white;
   background-color: black;
   position: relative;
+  
 }
 
 #gameItem {
@@ -18,4 +20,83 @@ body {
   position: absolute;
 /*   left: 100px; */  /* Uncomment if you want to set a "starting" position */
 /*   top: 100px;  */  /* Uncomment if you want to set a "starting" position */
+}
+#paddleLeft {
+  background-color: blue;
+  width: 20px;
+  height: 80px;
+  position: absolute;
+  top: 10px;
+  left: 15px;
+}
+#paddleRight {
+  background-color: gold;
+  width: 20px;
+  height: 80px;
+  position: absolute;
+  top: 10px;
+  left: 190px;
+}
+#ball {
+  background-color: white;
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  left: 190px;
+}
+#scoreRight {
+  width: 70px;
+	height: 70px;
+	background-color: gold;
+	font-size: 300%;
+	text-align: center;
+	display: block;
+	position: absolute;
+	top: 440px;
+	left: 500px;
+}
+#scoreLeft {
+  width: 70px;
+	height: 70px;
+	background-color: blue;
+	font-size: 300%;
+	text-align: center;
+	display: block;
+	position: absolute;
+	top: 440px;
+	left: 300px;
+}
+#block {
+  width: 70px;
+	height: 70px;
+	background-color: blue;
+	font-size: 300%;
+	text-align: center;
+	display: block;
+	position: absolute;
+	top: 200px;
+	left: 300px;
+}
+#message {
+  width: 200px;
+	height: 50px;
+	background-color: gold;
+	font-size: 300%;
+	text-align: center;
+	display: block;
+	position: absolute;
+	top: 100px;
+	left: 300px;
+}
+.reset {
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
