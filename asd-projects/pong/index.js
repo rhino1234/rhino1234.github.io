@@ -3,6 +3,7 @@
 $(document).ready(mainMenu); // wait for the HTML / CSS elements of the page to fully load, then execute runProgram()
 var endingPoint = 0;
 function mainMenu(){
+  $('#message').show();
   $('#board').hide();
   $('#settings').hide();
   $( ".mainStart" ).click(function() {
@@ -82,12 +83,14 @@ function settings(){
     $('.points9').css('background-color', "blue");
     $('.points10').css('background-color', "red");
   });
-
-
-
 }
 
-
+function changeTheme(player1, player2){
+  $('#paddleRight').css('background-color', player1);
+  $('#scoreRight').css('background-color', player1);
+  $('#paddleLeft').css('background-color', player2);
+  $('#scoreLeft').css('background-color', player2);
+}
 function runGame(){
   ////////////////////////////////////////////////////////////////////////////////
   //////////////////////////// SETUP /////////////////////////////////////////////
@@ -107,7 +110,7 @@ function runGame(){
     A: 65,
     D: 68,
   }
-  
+  //changeTheme("red","yellow");
   var BOARD_HEIGHT = $('#board').height();
   var BOARD_WIDTH = $('#board').width();
   var paddleSpeed = 7;
@@ -130,7 +133,6 @@ function GameItem(x, y, speedX, speedY, color, id){
 }
 
 var pointsRight = 0;
-var message = GameItem(BOARD_WIDTH/2,BOARD_HEIGHT/2,0,0,'gold','#message');
 var paddleLeft = GameItem(10, 200, 0, 0,0, '#paddleLeft');
 var paddleRight = GameItem(BOARD_WIDTH - 10 - $('#paddleRight').width(), 200, 0, 0,0, '#paddleRight');
 var ball = GameItem(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (Math.random() > 0.5 ? -3 : 3 ), (Math.random() > 0.5 ? -3 : 3 ),0, '#ball');

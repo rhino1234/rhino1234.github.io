@@ -16,7 +16,6 @@ p {
   word-spacing: -2px;
   color: blue;
   font-weight: 700;
-  text-decoration: none solid rgb(68, 68, 68);
   font-style: normal;
   font-variant: small-caps;
   text-transform: capitalize;
@@ -28,7 +27,6 @@ p2 {
   word-spacing: -2px;
   color: teal;
   font-weight: 700;
-  text-decoration: none solid rgb(68, 68, 68);
   font-style: normal;
   font-variant: small-caps;
   text-transform: capitalize;
@@ -195,6 +193,7 @@ point {
   position: absolute;
   top: 10px;
   left: 15px;
+  border-radius: 25px;
 }
 #paddleRight {
   background-color: gold;
@@ -203,6 +202,7 @@ point {
   position: absolute;
   top: 10px;
   left: 190px;
+  border-radius: 25px;
 }
 #ball {
   background-color: white;
@@ -214,8 +214,11 @@ point {
   left: 190px;
 }
 #scoreRight {
+  font-family: Impact, Charcoal, sans-serif;
+  color: teal;
   width: 70px;
-	height: 70px;
+	height: 60px;
+  border-radius: 40px;
 	background-color: gold;
 	font-size: 300%;
 	text-align: center;
@@ -225,8 +228,11 @@ point {
 	left: 500px;
 }
 #scoreLeft {
+  font-family: Impact, Charcoal, sans-serif;
+  color: teal;
   width: 70px;
-	height: 70px;
+	height: 60px;
+  border-radius: 40px;
 	background-color: blue;
 	font-size: 300%;
 	text-align: center;
@@ -248,15 +254,17 @@ point {
 }
 #message {
   width: 450px;
-	height: 220px;
-	background-color: gold;
+	height: 65px;
+	background-color: teal;
 	font-size: 300%;
 	text-align: center;
+  top: 100px;
+  left: 225px;
 	display: block;
 	position: absolute;
 }
 .reset {
-  background-color: green;
+  background-color: blue;
   border: none;
   color: white;
   padding: 15px 32px;
