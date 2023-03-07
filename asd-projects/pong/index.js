@@ -1,7 +1,91 @@
 /* global $, sessionStorage */
 
-$(document).ready(runGame); // wait for the HTML / CSS elements of the page to fully load, then execute runProgram()
+$(document).ready(mainMenu); // wait for the HTML / CSS elements of the page to fully load, then execute runProgram()
+var endingPoint = 0;
+function mainMenu(){
+  $('#board').hide();
+  $('#settings').hide();
+  $( ".mainStart" ).click(function() {
+    $('#menu').hide();
+    $('#settings').show();
+    settings();
+      $( ".mainStart2" ).click(function() {
+        $('#settings').hide();
+        $('#board').show();
+        runGame();
+        settings();
+      });
+   });
+}
+function settings(){
+  $( ".back" ).click(function() {
+    $('#menu').show();
+    $('#settings').hide();
+  });
+  $( ".points5" ).click(function() {
+    endingPoint = 5;
+    $('point').text("5");
+    $('.points5').css('background-color', "red");
+    $('.points6').css('background-color', "blue");
+    $('.points7').css('background-color', "blue");
+    $('.points8').css('background-color', "blue");
+    $('.points9').css('background-color', "blue");
+    $('.points10').css('background-color', "blue");
+  });
+  $( ".points6" ).click(function() {
+    endingPoint = 6;
+    $('point').text("6");
+    $('.points5').css('background-color', "blue");
+    $('.points6').css('background-color', "red");
+    $('.points7').css('background-color', "blue");
+    $('.points8').css('background-color', "blue");
+    $('.points9').css('background-color', "blue");
+    $('.points10').css('background-color', "blue");
+  });
+  $( ".points7" ).click(function() {
+    endingPoint = 7;
+    $('point').text("7");
+    $('.points5').css('background-color', "blue");
+    $('.points6').css('background-color', "blue");
+    $('.points7').css('background-color', "red");
+    $('.points8').css('background-color', "blue");
+    $('.points9').css('background-color', "blue");
+    $('.points10').css('background-color', "blue");
+  });
+  $( ".points8" ).click(function() {
+    endingPoint = 8;
+    $('point').text("8");
+    $('.points5').css('background-color', "blue");
+    $('.points6').css('background-color', "blue");
+    $('.points7').css('background-color', "blue");
+    $('.points8').css('background-color', "red");
+    $('.points9').css('background-color', "blue");
+    $('.points10').css('background-color', "blue");
+  });
+  $( ".points9" ).click(function() {
+    endingPoint = 9;
+    $('point').text("9");
+    $('.points5').css('background-color', "blue");
+    $('.points6').css('background-color', "blue");
+    $('.points7').css('background-color', "blue");
+    $('.points8').css('background-color', "blue");
+    $('.points9').css('background-color', "red");
+    $('.points10').css('background-color', "blue");
+  });
+  $( ".points10" ).click(function() {
+    endingPoint = 10;
+    $('point').text("10");
+    $('.points5').css('background-color', "blue");
+    $('.points6').css('background-color', "blue");
+    $('.points7').css('background-color', "blue");
+    $('.points8').css('background-color', "blue");
+    $('.points9').css('background-color', "blue");
+    $('.points10').css('background-color', "red");
+  });
 
+
+
+}
 
 
 function runGame(){
@@ -23,16 +107,15 @@ function runGame(){
     A: 65,
     D: 68,
   }
-
+  
   var BOARD_HEIGHT = $('#board').height();
   var BOARD_WIDTH = $('#board').width();
   var paddleSpeed = 7;
   var pointsRight = 0;
   var pointsLeft = 0;
-  var winner = 0; 
-  var endingScore = 2;
+  var endingScore = endingPoint;
   // Game Item Objects
-function GameItem(x, y, speedX, speedY, color, id, text){
+function GameItem(x, y, speedX, speedY, color, id){
   var item = {
     x: x,
     y: y, 
@@ -42,19 +125,20 @@ function GameItem(x, y, speedX, speedY, color, id, text){
     w: $(id).width(),
     color: $(id).css('background-color', color),
     id: id,
-    text: $(id).text(text)
   }
   return item;
 }
+
 var pointsRight = 0;
-var message = GameItem(BOARD_WIDTH/2,BOARD_HEIGHT/2,0,0,'gold','#message', winner + ' wins!')
+var message = GameItem(BOARD_WIDTH/2,BOARD_HEIGHT/2,0,0,'gold','#message');
 var paddleLeft = GameItem(10, 200, 0, 0,0, '#paddleLeft');
-var paddleRight = GameItem(BOARD_WIDTH - 10 - $('#paddleRight').width(), 200, 0, 0,0, '#paddleRight')
+var paddleRight = GameItem(BOARD_WIDTH - 10 - $('#paddleRight').width(), 200, 0, 0,0, '#paddleRight');
 var ball = GameItem(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (Math.random() > 0.5 ? -3 : 3 ), (Math.random() > 0.5 ? -3 : 3 ),0, '#ball');
-var ball2 = GameItem(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (Math.random() > 0.5 ? -3 : 3 ), (Math.random() > 0.5 ? -3 : 3 ),0, '#ball');
-var ball3 = GameItem(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (Math.random() > 0.5 ? -3 : 3 ), (Math.random() > 0.5 ? -3 : 3 ),0, '#ball');
+
+
 var scoreRight = jQuery('#scoreRight');
 var scoreLeft = jQuery('#scoreLeft');
+var gameEnded = false;
 
 
 
@@ -74,8 +158,8 @@ var scoreLeft = jQuery('#scoreLeft');
   function newFrame() {
     $('#block').hide();
     updateItem(ball);
-    updateItem(ball2);
-    updateItem(ball3);
+    //updateItem(ball2);
+    
     updateItem(paddleRight);
     updateItem(paddleLeft);
 
@@ -90,8 +174,11 @@ var scoreLeft = jQuery('#scoreLeft');
     point();
     changeScore(pointsRight, scoreRight);
     changeScore(pointsLeft, scoreLeft);
-    whoWins();
-   
+    if(gameEnded === false){
+      console.log("won");
+      whoWins();
+    }
+    
     
   }
   $('#message').hide();
@@ -145,6 +232,10 @@ var scoreLeft = jQuery('#scoreLeft');
     obj.x = obj.x + obj.speedX;
     obj.y = obj.y + obj.speedY;
  }
+
+
+
+
 function moveBall(){
     ball.x = ball.x + ball.speedX;
     ball.y = ball.y + ball.speedY;
@@ -167,10 +258,17 @@ function point(){
     pointsRight = pointsRight + 1;
 }
 }
+
+
+
+
+
 function whoWins(){
   if(pointsRight === endingScore){
+    $('#message').text("Yellow Wins");
     endGame();
   }else if(pointsLeft === endingScore){
+    $('#message').text("Blue Wins");
     endGame();
   }
 }
@@ -199,6 +297,9 @@ if ((obj1.rightX > obj2.leftX) &&
   }
   
 }
+
+
+
 function ifHit(){
   if(doCollide(ball, paddleRight)){
     ball.speedX = -ball.speedX;
@@ -211,6 +312,10 @@ function ifHit(){
     ball.speedY = ball.speedY * 1.1;
   }
 }
+
+
+
+
 function changeScore(newText, player) {
   player.text(newText);
 }
@@ -227,12 +332,19 @@ function changeScore(newText, player) {
       paddleLeft.y -= paddleLeft.speedY;
     }
   }
+
+
+
   function resetBall(){
     ball.x = BOARD_WIDTH /2;
     ball.y = BOARD_HEIGHT/2;
     ball.speedX = (Math.random() > 0.5 ? -3 : 3 );
     ball.speedY = (Math.random() > 0.5 ? -3 : 3 );
   }
+
+
+  
+
   //function that will handle what happens when a player scores
   //function that will display the score
   //function that will handle winner instance
@@ -243,7 +355,9 @@ function changeScore(newText, player) {
 
   function endGame() {
     // stop the interval timer
-    //clearInterval(interval);
+    clearInterval(interval);
+    gameEnded === true;
+    
     $('.reset').show();
     $('#message').show();
     $('#paddleRight').hide();
@@ -256,20 +370,9 @@ function changeScore(newText, player) {
     //$(document).off();
   }
   $( ".reset" ).click(function() {
-   // $(document).on();
-   console.log("hi");
-    pointsLeft = 0;
-    pointsRight = 0;
-    ball.speedX = (Math.random() > 0.5 ? -3 : 3 );
-    ball.speedY = (Math.random() > 0.5 ? -3 : 3 );
-    $('#scoreRight').show();
-    $('#scoreLeft').show();
-    $(".reset").hide();
-    $('#message').hide();
-    $('#paddleRight').show();
-    $('#paddleLeft').show();
-    $('#ball').show();
-    resetBall();
+    location.reload();
+    endingPoint = 0;
   });
+  
 }
 

@@ -1,0 +1,16 @@
+$( ".reset" ).click(function() {
+   // $(document).on();
+   console.log("hi");
+    pointsLeft = 0;
+    pointsRight = 0;
+    ball.speedX = (Math.random() > 0.5 ? -3 : 3 );
+    ball.speedY = (Math.random() > 0.5 ? -3 : 3 );
+    $('#scoreRight').show();
+    $('#scoreLeft').show();
+    $(".reset").hide();
+    $('#message').hide();
+    $('#paddleRight').show();
+    $('#paddleLeft').show();
+    $('#ball').show();
+    resetBall();
+  });
