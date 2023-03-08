@@ -242,6 +242,7 @@ function moveBall(){
     ball.x = ball.x + ball.speedX;
     ball.y = ball.y + ball.speedY;
 }
+//function that checks the bottom and top walls for ball
 function walls(){
   if(ball.y>BOARD_HEIGHT) {
     ball.speedY = -ball.speedY;
@@ -265,6 +266,7 @@ function point(){
 
 
 
+//function that will handle winner instance
 function whoWins(){
   if(pointsRight === endingScore){
     $('#message').text("Yellow Wins");
@@ -274,6 +276,8 @@ function whoWins(){
     endGame();
   }
 }
+
+//do collide to determine if two objects have collided
 function doCollide(obj1, obj2) {
   // TODO: calculate and store the remaining
   // sides of the square1
@@ -301,7 +305,7 @@ if ((obj1.rightX > obj2.leftX) &&
 }
 
 
-
+ //function that changes ball speed when it hits the paddle(change direction and speed)
 function ifHit(){
   if(doCollide(ball, paddleRight)){
     ball.speedX = -ball.speedX;
@@ -318,13 +322,11 @@ function ifHit(){
 
 
 
+//function that will display the score
 function changeScore(newText, player) {
   player.text(newText);
 }
-  //function that checks the bottom and top walls for ball
-  //function checkWalls(){
-  //  if(ball.y < 0)
-  //}
+
   //function that checks the boundaries for the paddles
   function paddleBorder(){
     if (paddleRight.y < 0 || paddleRight.y + $(paddleRight.id).height() > BOARD_HEIGHT){
@@ -347,14 +349,13 @@ function changeScore(newText, player) {
 
   
 
-  //function that will handle what happens when a player scores
-  //function that will display the score
-  //function that will handle winner instance
-  //function that will display play agian button when game is won
-  //do collide to determine if two objects have collided
-  //function that changes ball speed when it hits the paddle(change direction and speed)
+ 
+  
+  
+  
+ 
 
-
+//function that will display play again button when game is won
   function endGame() {
     // stop the interval timer
     clearInterval(interval);
