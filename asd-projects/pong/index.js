@@ -2,6 +2,8 @@
 
 $(document).ready(mainMenu); // wait for the HTML / CSS elements of the page to fully load, then execute runProgram()
 var endingPoint = 0;
+var ballsNumber = 1;
+var reactBall = 0;
 function mainMenu(){
   $('#message').show();
   $('#board').hide();
@@ -10,12 +12,8 @@ function mainMenu(){
     $('#menu').hide();
     $('#settings').show();
     settings();
-      $( ".mainStart2" ).click(function() {
-        $('#settings').hide();
-        $('#board').show();
-        runGame();
-        settings();
-      });
+      $('.mainStart2').hide();
+
    });
 }
 function settings(){
@@ -32,6 +30,13 @@ function settings(){
     $('.points8').css('background-color', "blue");
     $('.points9').css('background-color', "blue");
     $('.points10').css('background-color', "blue");
+    $('.mainStart2').show();
+    $( ".mainStart2" ).click(function() {
+      $('#settings').hide();
+      $('#board').show();
+      runGame();
+      settings();
+    });
   });
   $( ".points6" ).click(function() {
     endingPoint = 6;
@@ -42,6 +47,13 @@ function settings(){
     $('.points8').css('background-color', "blue");
     $('.points9').css('background-color', "blue");
     $('.points10').css('background-color', "blue");
+    $('.mainStart2').show();
+    $( ".mainStart2" ).click(function() {
+      $('#settings').hide();
+      $('#board').show();
+      runGame();
+      settings();
+    });
   });
   $( ".points7" ).click(function() {
     endingPoint = 7;
@@ -52,6 +64,13 @@ function settings(){
     $('.points8').css('background-color', "blue");
     $('.points9').css('background-color', "blue");
     $('.points10').css('background-color', "blue");
+    $('.mainStart2').show();
+    $( ".mainStart2" ).click(function() {
+      $('#settings').hide();
+      $('#board').show();
+      runGame();
+      settings();
+    });
   });
   $( ".points8" ).click(function() {
     endingPoint = 8;
@@ -62,6 +81,13 @@ function settings(){
     $('.points8').css('background-color', "red");
     $('.points9').css('background-color', "blue");
     $('.points10').css('background-color', "blue");
+    $('.mainStart2').show();
+    $( ".mainStart2" ).click(function() {
+      $('#settings').hide();
+      $('#board').show();
+      runGame();
+      settings();
+    });
   });
   $( ".points9" ).click(function() {
     endingPoint = 9;
@@ -72,6 +98,13 @@ function settings(){
     $('.points8').css('background-color', "blue");
     $('.points9').css('background-color', "red");
     $('.points10').css('background-color', "blue");
+    $('.mainStart2').show();
+    $( ".mainStart2" ).click(function() {
+      $('#settings').hide();
+      $('#board').show();
+      runGame();
+      settings();
+    });
   });
   $( ".points10" ).click(function() {
     endingPoint = 10;
@@ -82,6 +115,48 @@ function settings(){
     $('.points8').css('background-color', "blue");
     $('.points9').css('background-color', "blue");
     $('.points10').css('background-color', "red");
+    $('.mainStart2').show();
+    $( ".mainStart2" ).click(function() {
+      $('#settings').hide();
+      $('#board').show();
+      runGame();
+      settings();
+    });
+  });
+ballsNumber = 1;
+  $( ".numberBall1" ).click(function() {
+    ballsNumber = 1;
+    $('numberBall').text("1");
+    $('.numberBall1').css('background-color', "red");
+    $('.numberBall2').css('background-color', "blue");
+    $('.numberBall3').css('background-color', "blue");
+  });
+  $( ".numberBall2" ).click(function() {
+    ballsNumber = 2;
+    $('numberBall').text("2");
+    $('.numberBall1').css('background-color', "blue");
+    $('.numberBall2').css('background-color', "red");
+    $('.numberBall3').css('background-color', "blue");
+  });
+  $( ".numberBall3" ).click(function() {
+    ballsNumber = 3;
+    $('numberBall').text("3");
+    $('.numberBall1').css('background-color', "blue");
+    $('.numberBall2').css('background-color', "blue");
+    $('.numberBall3').css('background-color', "red");
+  });
+
+  $( ".reactOn" ).click(function() {
+    reactBall = true;
+    $('reactBall').text("On");
+    $('.reactOn').css('background-color', "red");
+    $('.reactOff').css('background-color', "blue");
+  });
+  $( ".reactOff" ).click(function() {
+    reactBall = false;
+    $('reactBall').text("Off");
+    $('.reactOn').css('background-color', "blue");
+    $('.reactOff').css('background-color', "red");
   });
 }
 
@@ -117,6 +192,8 @@ function runGame(){
   var pointsRight = 0;
   var pointsLeft = 0;
   var endingScore = endingPoint;
+  var numberOfBalls = ballsNumber;
+  var ballsReact = reactBall;
   // Game Item Objects
 function GameItem(x, y, speedX, speedY, color, id){
   var item = {
@@ -135,15 +212,28 @@ function GameItem(x, y, speedX, speedY, color, id){
 var pointsRight = 0;
 var paddleLeft = GameItem(10, 200, 0, 0,0, '#paddleLeft');
 var paddleRight = GameItem(BOARD_WIDTH - 10 - $('#paddleRight').width(), 200, 0, 0,0, '#paddleRight');
-var ball = GameItem(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (Math.random() > 0.5 ? -3 : 3 ), (Math.random() > 0.5 ? -3 : 3 ),0, '#ball');
-
+var ball = GameItem(400, 200, (Math.random() > 0.5 ? -3 : 3 ), (Math.random() > 0.5 ? -3 : 3 ),0, '#ball');
+var ball2 = GameItem(400, 50, (Math.random() > 0.5 ? -3 : 3 ), (Math.random() > 0.5 ? -3 : 3 ),0, '#ball2');
+var ball3 = GameItem(400, 325, (Math.random() > 0.5 ? -3 : 3 ), (Math.random() > 0.5 ? -3 : 3 ),0, '#ball3');
+var block = GameItem(400, 325, (Math.random() > 0.5 ? -3 : 3 ), (Math.random() > 0.5 ? -3 : 3 ),0, '#block');
 
 var scoreRight = jQuery('#scoreRight');
 var scoreLeft = jQuery('#scoreLeft');
 var gameEnded = false;
 
-
-
+if(numberOfBalls === 1){
+  $('#ball').show();
+  $('#ball2').hide();
+  $('#ball3').hide();
+} else if(numberOfBalls === 2){
+  $('#ball').show();
+  $('#ball2').show();
+  $('#ball3').hide();
+} else if(numberOfBalls === 3){
+  $('#ball').show();
+  $('#ball2').show();
+  $('#ball3').show();
+}
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
@@ -158,22 +248,43 @@ var gameEnded = false;
   by calling this function and executing the code inside.
   */
   function newFrame() {
+
+
     $('#block').hide();
     updateItem(ball);
+    updateItem(ball2);
+    updateItem(ball3);
     //updateItem(ball2);
     
     updateItem(paddleRight);
     updateItem(paddleLeft);
 
-    moveBall();
-    walls();
+    moveBall(ball);
+    moveBall(ball2);
+    moveBall(ball3);
+    walls(ball);
+    walls(ball2);
+    walls(ball3);
     paddleBorder(); 
-    ifHit();
+    ifHit(ball);
+    ifHit(ball2);
+    ifHit(ball3);
+    if (ballsReact === true){
+      ballHit();
+    }
+    //ballHit();
+
+    //hitBlock();
     drawItem(message);
     drawItem(paddleLeft);
     drawItem(paddleRight);
     drawItem(ball);
-    point();
+    drawItem(ball2);
+    drawItem(ball3);
+    drawItem(block);
+    point(ball);
+    point(ball2);
+    point(ball3);
     changeScore(pointsRight, scoreRight);
     changeScore(pointsLeft, scoreLeft);
     if(gameEnded === false){
@@ -226,8 +337,8 @@ var gameEnded = false;
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
  function drawItem(obj){
-  $(obj.id).css("top", obj.y); //draw an object in the new location on the y awis
-  $(obj.id).css("left", obj.x); //same but for x
+    $(obj.id).css("top", obj.y); //draw an object in the new location on the y awis
+    $(obj.id).css("left", obj.x); //same but for x
  }
 
  function updateItem(obj){
@@ -238,12 +349,12 @@ var gameEnded = false;
 
 
 
-function moveBall(){
+function moveBall(ball){
     ball.x = ball.x + ball.speedX;
     ball.y = ball.y + ball.speedY;
 }
 //function that checks the bottom and top walls for ball
-function walls(){
+function walls(ball){
   if(ball.y>BOARD_HEIGHT) {
     ball.speedY = -ball.speedY;
   }
@@ -251,6 +362,7 @@ function walls(){
     ball.speedY = -ball.speedY;
   }
 }
+
 function point(){
   if (ball.x > BOARD_WIDTH) {
     resetBall();
@@ -259,7 +371,36 @@ function point(){
   if (ball.x < 0) {
     resetBall();
     pointsRight = pointsRight + 1;
-}
+  }
+  if (numberOfBalls === 2){
+    if (ball2.x > BOARD_WIDTH) {
+      resetBall();
+      pointsLeft = pointsLeft + 1;
+    }
+    if (ball2.x < 0) {
+      resetBall();
+      pointsRight = pointsRight + 1;
+    }
+  }
+  if (numberOfBalls === 3){
+    if (ball2.x > BOARD_WIDTH) {
+      resetBall();
+      pointsLeft = pointsLeft + 1;
+    }
+    if (ball2.x < 0) {
+      resetBall();
+      pointsRight = pointsRight + 1;
+    }
+
+    if (ball3.x > BOARD_WIDTH) {
+      resetBall();
+      pointsLeft = pointsLeft + 1;
+    }
+    if (ball3.x < 0) {
+      resetBall();
+      pointsRight = pointsRight + 1;
+    }
+  }
 }
 
 
@@ -306,7 +447,7 @@ if ((obj1.rightX > obj2.leftX) &&
 
 
  //function that changes ball speed when it hits the paddle(change direction and speed)
-function ifHit(){
+function ifHit(ball){
   if(doCollide(ball, paddleRight)){
     ball.speedX = -ball.speedX;
     ball.speedX = ball.speedX * 1.1;
@@ -318,7 +459,42 @@ function ifHit(){
     ball.speedY = ball.speedY * 1.1;
   }
 }
-
+function hitBlock(){
+  if(doCollide(ball, block)){
+    ball.speedX = -ball.speedX;
+  }
+}
+function ballHit(){
+  if(numberOfBalls === 2){
+    if(doCollide(ball, ball2)){
+      ball.speedX = -ball.speedX;
+    }
+    if(doCollide(ball2, ball)){
+      ball2.speedX = -ball2.speedX;
+    }
+  }
+  
+  if(numberOfBalls === 3){
+    if(doCollide(ball, ball2)){
+      ball.speedX = -ball.speedX;
+    }
+    if(doCollide(ball2, ball)){
+      ball2.speedX = -ball2.speedX;
+    }
+    if(doCollide(ball, ball3)){
+      ball.speedX = -ball.speedX;
+    }
+    if(doCollide(ball2, ball3)){
+      ball2.speedX = -ball2.speedX;
+    }
+    if(doCollide(ball3, ball)){
+      ball3.speedX = -ball3.speedX;
+    }
+    if(doCollide(ball3, ball2)){
+      ball3.speedX = -ball3.speedX;
+    }
+  }
+}
 
 
 
@@ -337,19 +513,29 @@ function changeScore(newText, player) {
     }
   }
 
-
+  
 
   function resetBall(){
-    ball.x = BOARD_WIDTH /2;
-    ball.y = BOARD_HEIGHT/2;
+    ball.x = 400;
+    ball.y = 200;
     ball.speedX = (Math.random() > 0.5 ? -3 : 3 );
     ball.speedY = (Math.random() > 0.5 ? -3 : 3 );
+
+    ball2.x = 400;
+    ball2.y = 50;
+    ball2.speedX = (Math.random() > 0.5 ? -3 : 3 );
+    ball2.speedY = (Math.random() > 0.5 ? -3 : 3 );
+
+    ball3.x = 400;
+    ball3.y = 325;
+    ball3.speedX = (Math.random() > 0.5 ? -3 : 3 );
+    ball3.speedY = (Math.random() > 0.5 ? -3 : 3 );
   }
 
 
   
-
- 
+//BOARD_WIDTH /2;
+//BOARD_HEIGHT/2;
   
   
   
@@ -366,6 +552,9 @@ function changeScore(newText, player) {
     $('#paddleRight').hide();
     $('#paddleLeft').hide();
     $('#ball').hide();
+    $('#ball2').hide();
+    $('#ball3').hide();
+
     $('#scoreRight').hide();
     $('#scoreLeft').hide();
     
