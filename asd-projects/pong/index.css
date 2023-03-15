@@ -251,6 +251,18 @@ reactBall {
   font-variant: small-caps;
   text-transform: capitalize;
 }
+info {
+  
+  font-size: 25px;
+  letter-spacing: -2px;
+  word-spacing: 5px;
+  color: rgb(112, 2, 2);
+  font-weight: 700;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: normal;
+  font-variant: small-caps;
+  text-transform: capitalize;
+}
 
 #board {
   
